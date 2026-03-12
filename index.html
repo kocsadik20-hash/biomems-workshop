@@ -593,13 +593,19 @@
 
   /* Laptop için verdiğimiz scale değerlerini mobilde kapat */
   .logo-item img {
-    transform: none !important;
-    max-width: 100%;
-    max-height: 100%;
-  }
-  .logo-item img[src="odtu.png"] {
+  transform: none !important;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.logo-item img[src="odtu.png"] {
   transform: scale(1.35) !important;
-  }
+}
+
+.logo-item:has(img[src="odtu.png"]) {
+  grid-column: span 2;
+  justify-self: center;
+}
 
   .logo-item.offset {
     transform: none;
