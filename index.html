@@ -578,15 +578,24 @@
     line-height: 1.55;
   }
 
+  /* LOGO DÜZENİ */
   .logo-grid {
-    grid-template-columns: 1fr;
-    max-width: 260px;
-    gap: 18px;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 340px;
+    gap: 18px 18px;
+    justify-items: center;
   }
 
   .logo-item {
-    width: 180px;
-    height: 90px;
+    width: 140px;
+    height: 80px;
+  }
+
+  /* Laptop için verdiğimiz scale değerlerini mobilde kapat */
+  .logo-item img {
+    transform: none !important;
+    max-width: 100%;
+    max-height: 100%;
   }
 
   .logo-item.offset {
