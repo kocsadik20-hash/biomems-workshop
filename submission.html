@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abstract Submission | 5th BioMEMS and Microfluidic Technologies Workshop</title>
+  <style>
+    :root {
+      --primary: #103b73;
+      --secondary: #d90f33;
+      --text: #1f2a37;
+      --muted: #5b6573;
+      --bg: #f7f9fc;
+      --white: #ffffff;
+      --shadow: 0 12px 30px rgba(16, 59, 115, 0.12);
+      --radius: 18px;
+      --border: rgba(16, 59, 115, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 980px;
+      margin: 0 auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(16, 59, 115, 0.08);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 18px;
+    }
+
+    .brand {
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 1.05rem;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1rem;
+    }
+
+    .hero-mini {
+      padding: 56px 0 24px 0;
+    }
+
+    .hero-box {
+      background: linear-gradient(135deg, #103b73, #1c5ca7);
+      color: var(--white);
+      border-radius: 28px;
+      padding: 34px 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-box h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.12;
+      margin-bottom: 12px;
+    }
+
+    .hero-box p {
+      font-size: 1.08rem;
+      max-width: 760px;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .content {
+      padding: 24px 0 72px 0;
+    }
+
+    .info-card,
+    .form-card {
+      background: var(--white);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .info-card {
+      margin-bottom: 22px;
+    }
+
+    .info-card h2,
+    .form-card h2 {
+      color: var(--secondary);
+      font-size: 1.8rem;
+      margin-bottom: 14px;
+    }
+
+    .info-card p {
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .info-card ul {
+      padding-left: 20px;
+      color: var(--muted);
+      display: grid;
+      gap: 8px;
+    }
+
+    form {
+      display: grid;
+      gap: 18px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 0.98rem;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 14px;
+      font: inherit;
+      color: var(--text);
+      background: #fff;
+      outline: none;
+      transition: 0.2s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(217, 15, 51, 0.45);
+      box-shadow: 0 0 0 4px rgba(217, 15, 51, 0.08);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .checkbox-row input {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding-top: 8px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: 0.25s ease;
+      border: none;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .btn-primary {
+      background: var(--secondary);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.03);
+    }
+
+    .btn-outline {
+      border: 2px solid var(--primary);
+      background: var(--white);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      transform: translateY(-2px);
+      background: #f3f7fd;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 0.94rem;
+      margin-top: 10px;
+    }
+
+    footer {
+      background: #0f2f59;
+      color: rgba(255, 255, 255, 0.92);
+      padding: 28px 0;
+      margin-top: 40px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    @media (max-width: 760px) {
+      .nav-inner {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .nav-links {
+        justify-content: center;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-box {
+        padding: 28px 22px;
+      }
+
+      .info-card,
+      .form-card {
+        padding: 22px;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">5th BioMEMS and Microfluidic Technologies Workshop</a>
+      <nav class="nav-links">
+        <a href="index.html#about">About</a>
+        <a href="index.html#topics">Topics</a>
+        <a href="index.html#committee">Committee</a>
+        <a href="index.html#abstracts">Abstracts</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero-mini">
+    <div class="container">
+      <div class="hero-box">
+        <h1>Abstract Submission</h1>
+        <p>
+          Please complete the submission form below and upload your abstract as a PDF prepared using the official workshop template.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container">
+      <div class="info-card">
+        <h2>Before You Submit</h2>
+        <ul>
+          <li>The abstract must be prepared using the official workshop template.</li>
+          <li>The final file must be submitted in PDF format.</li>
+          <li>Please ensure that all author names, affiliations, and contact information are entered correctly.</li>
+          <li>Selected submissions may be invited for short oral presentations.</li>
+        </ul>
+      </div>
+
+      <div class="form-card">
+        <h2>Submission Form</h2>
+
+        <form action="thankyou.html">
+          <div class="form-grid">
+            <div class="field">
+              <label for="first-name">First Name</label>
+              <input type="text" id="first-name" name="first_name" required>
+            </div>
+
+            <div class="field">
+              <label for="last-name">Last Name</label>
+              <input type="text" id="last-name" name="last_name" required>
+            </div>
+
+            <div class="field">
+              <label for="email">E-mail Address</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="field">
+<label for="phone">Phone Number</label>
+
+<div style="display:flex; align-items:center; border:1px solid rgba(16,59,115,0.12); border-radius:14px; overflow:hidden;">
+
+  <span style="
+  background:#f3f7fd;
+  padding:14px 12px;
+  font-weight:700;
+  color:#103b73;
+  border-right:1px solid rgba(16,59,115,0.12);
+  ">+90</span>
+
+  <input
+  type="tel"
+  id="phone"
+  name="phone"
+  placeholder="5XX XXX XX XX"
+  style="border:none; outline:none; flex:1; padding:14px;"
+  required
+  >
+
+</div>
+
+</div>
+
+            <div class="field full">
+              <label for="affiliation">Affiliation</label>
+              <input type="text" id="affiliation" name="affiliation" required>
+            </div>
+
+            <div class="field full">
+              <label for="authors">Author(s)</label>
+              <textarea id="authors" name="authors" placeholder="Enter all authors as they should appear in the abstract." required></textarea>
+            </div>
+
+            <div class="field full">
+              <label for="paper-title">Abstract Title</label>
+              <input type="text" id="paper-title" name="paper_title" required>
+            </div>
+
+            <div class="field">
+              <label for="topic">Topic</label>
+              <select id="topic" name="topic" required>
+                <option value="">Select a topic</option>
+                <option>Biosensors</option>
+                <option>MEMS / NEMS</option>
+                <option>Microfluidics</option>
+                <option>Lab-on-a-Chip Systems</option>
+                <option>Point-of-Care Diagnostics</option>
+                <option>Organ-on-a-Chip Systems</option>
+                <option>Wearables and Implantables</option>
+                <option>Energy Harvesting and Self-Powered Sensors</option>
+                <option>Environmental Monitoring</option>
+                <option>Translational Microtechnologies</option>
+                <option>Manufacturing and Scalable Fabrication</option>
+                <option>Standardization, Interoperability and System Integration</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="presentation-type">Preferred Presentation Type</label>
+              <select id="presentation-type" name="presentation_type">
+                <option value="">Select an option</option>
+                <option>Poster Presentation</option>
+                <option>Oral/Poster Presentation</option>
+
+              </select>
+            </div>
+
+
+            <div class="field full">
+              <label for="file">Upload Abstract PDF</label>
+              <input type="file" id="file" name="abstract_pdf" accept=".pdf" required>
+            </div>
+
+            <div class="field full">
+              <label class="checkbox-row">
+                <input type="checkbox" required>
+                <span>I confirm that this submission was prepared using the official workshop template and that the uploaded file is in PDF format.</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="btn btn-primary">Submit Abstract</button>
+            <a class="btn btn-outline" href="Abstract_Template.docx" download>Download Template</a>
+            <a class="btn btn-outline" href="index.html">Back to Main Page</a>
+          </div>
+
+          <p class="note">
+            This form currently provides the submission interface design. A backend service or submission platform is required for real file upload and storage.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <p><strong>5th BioMEMS and Microfluidic Technologies Workshop</strong></p>
+      <p>SUNUM, Sabancı University • 11–12 June 2026</p>
+    </div>
+  </footer>
+</body>
+</html>
