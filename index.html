@@ -101,6 +101,57 @@
       font-size: 1.1rem;
     }
 
+    .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  display: inline-block;
+  padding-bottom: 8px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: var(--white);
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(16, 59, 115, 0.16);
+  border: 1px solid rgba(16, 59, 115, 0.08);
+  padding: 10px 0;
+  display: none;
+  z-index: 1200;
+}
+
+/* Hover boşluğunu kapatır */
+.dropdown::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  height: 12px;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 12px 16px;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.98rem;
+  white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+  background: #f3f7fd;
+}
+
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
+  display: block;
+}
     .hero {
       position: relative;
       min-height: 88vh;
@@ -161,7 +212,7 @@
 
     .hero-cards {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
       margin-top: 18px;
     }
@@ -290,18 +341,33 @@
     }
 
     .person-photo {
-      width: 84px;
-      height: 84px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #c8d9f3, #eaf1fb);
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--primary);
-      font-weight: 900;
-      font-size: 1.2rem;
-    }
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c8d9f3, #eaf1fb);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.person-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Özlem hocanın fotoğrafını biraz aşağı al */
+img[src="ozlem.jpg"] {
+  object-position: center 2%;
+}
+
+/* Metin hocanın fotoğrafını biraz aşağı al */
+img[src="metin.jpeg"] {
+  object-position: center 10%;
+}
 
     .person h3 {
       color: var(--primary);
@@ -454,190 +520,217 @@
     }
 
     @media (max-width: 980px) {
-  .hero-cards,
-  .topics-grid,
-  .committee-grid,
-  .schedule-grid,
-  .about-grid {
-    grid-template-columns: 1fr;
-  }
+      .hero-cards,
+      .topics-grid,
+      .committee-grid,
+      .schedule-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
 
-  .logo-grid {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 520px;
-  }
+      .logo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 520px;
+      }
 
-  .logo-item.offset {
-    transform: none;
-  }
+      .logo-item.offset {
+        transform: none;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .navbar .container {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .nav-inner {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .nav-links {
+        justify-content: center;
+        gap: 12px 16px;
+        font-size: 0.95rem;
+      }
+
+      .dropdown {
+  width: 100%;
+  text-align: center;
 }
 
-@media (max-width: 680px) {
-  .container {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .navbar .container {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .nav-inner {
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .nav-links {
-    justify-content: center;
-    gap: 12px 16px;
-    font-size: 0.95rem;
-  }
-
-  .hero {
-    min-height: auto;
-    padding: 36px 0;
-  }
-
-  .hero-content {
-    max-width: 100%;
-    padding: 20px 0;
-  }
-
-  .hero h1 {
-    max-width: 100%;
-    font-size: 2rem;
-    padding: 20px 16px 10px 16px;
-  }
-
-  .hero p {
-    max-width: 100%;
-    font-size: 1rem;
-    padding: 12px 16px 18px 16px;
-  }
-
-  .cta-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .btn {
-    width: 100%;
-    max-width: 260px;
-    text-align: center;
-  }
-
-  .hero-cards {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-card {
-    text-align: center;
-  }
-
-  .topics-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .topic-card {
-    min-height: 110px;
-    padding: 18px;
-  }
-
-  .topic-card h3 {
-    font-size: 1.05rem;
-    margin-bottom: 0;
-  }
-
-  .committee-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .person {
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-  }
-
-  .person-photo {
-    width: 96px;
-    height: 96px;
-  }
-
-  .about-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .section-title h2 {
-    font-size: 2rem;
-  }
-
-  .section-title p {
-    font-size: 1.05rem;
-    line-height: 1.55;
-  }
-
-  /* LOGO DÜZENİ */
-  .logo-grid {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 340px;
-    gap: 18px 18px;
-    justify-items: center;
-  }
-
-  .logo-item {
-    width: 140px;
-    height: 80px;
-  }
-
-  /* Laptop için verdiğimiz scale değerlerini mobilde kapat */
-  .logo-item img {
-  transform: none !important;
-  max-width: 100%;
-  max-height: 100%;
+.dropdown-menu {
+  position: static;
+  display: block;
+  min-width: unset;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+  padding: 4px 0 0 0;
 }
 
-/* Mobil logo ayarları */
-
-.logo-item img[src="ege.png"] {
-  transform: scale(0.8) !important;
+.dropdown-menu a {
+  padding: 6px 0;
+  font-size: 0.92rem;
 }
 
-.logo-item img[src="iyte.png"] {
-  transform: scale(0.85) !important;
+      .hero {
+        min-height: auto;
+        padding: 36px 0;
+      }
+
+      .hero-content {
+        max-width: 100%;
+        padding: 20px 0;
+      }
+
+      .hero h1 {
+        max-width: 100%;
+        font-size: 2rem;
+        padding: 20px 16px 10px 16px;
+      }
+
+      .hero p {
+        max-width: 100%;
+        font-size: 1rem;
+        padding: 12px 16px 18px 16px;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 260px;
+        text-align: center;
+      }
+
+      .hero-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        text-align: center;
+      }
+
+      .topics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topic-card {
+        min-height: 110px;
+        padding: 18px;
+      }
+
+      .topic-card h3 {
+        font-size: 1.05rem;
+        margin-bottom: 0;
+      }
+
+      .committee-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .person {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+      }
+
+      .person-photo {
+        width: 96px;
+        height: 96px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title h2 {
+        font-size: 2rem;
+      }
+
+      .section-title p {
+        font-size: 1.05rem;
+        line-height: 1.55;
+      }
+
+      .logo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 340px;
+        gap: 18px 18px;
+        justify-items: center;
+      }
+
+      .logo-item {
+        width: 140px;
+        height: 80px;
+      }
+
+      .logo-item img {
+        transform: none !important;
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      .logo-item img[src="ege.png"] {
+        transform: scale(0.8) !important;
+      }
+
+      .logo-item img[src="iyte.png"] {
+        transform: scale(0.85) !important;
+      }
+
+      .logo-item img[src="odtu.png"] {
+        transform: scale(1.8) !important;
+      }
+
+      .logo-item:has(img[src="odtu.png"]) {
+        grid-column: span 2;
+        justify-self: center;
+      }
+
+      .logo-item img[src="koclogo.png"] {
+  transform: scale(0.95) !important;
 }
 
-.logo-item img[src="odtu.png"] {
-  transform: scale(1.8) !important;
-}
+      .logo-item.offset {
+        transform: none;
+      }
 
-.logo-item:has(img[src="odtu.png"]) {
-  grid-column: span 2;
-  justify-self: center;
-}
-
-  .logo-item.offset {
-    transform: none;
-  }
-
-  section {
-    padding: 56px 0;
-  }
-}
+      section {
+        padding: 56px 0;
+      }
+    }
   </style>
 </head>
 <body>
   <header class="navbar">
     <div class="container nav-inner">
-
       <nav class="nav-links">
-        <a href="#about">About</a>
-        <a href="#topics">Topics</a>
-        <a href="#committee">Committee</a>
-        <a href="#abstracts">Abstracts</a>
-        <a href="#contact">Contact</a>
-      </nav>
+  <a href="#about">About</a>
+  <a href="#topics">Topics</a>
+  <a href="#committee">Committee</a>
+
+  <div class="dropdown">
+    <a href="#abstracts" class="dropdown-toggle">Abstracts</a>
+    <div class="dropdown-menu">
+      <a href="#abstracts">Abstract Submission</a>
+      <a href="Abstract_Template.docx" download>Download Template</a>
+    </div>
+  </div>
+
+  <a href="#contact">Contact</a>
+</nav>
     </div>
   </header>
 
@@ -648,7 +741,7 @@
         A focused scientific meeting bringing together researchers working at the intersection of biosensors, MEMS/NEMS, microfluidics, lab-on-a-chip systems, and translational biomedical technologies.
       </p>
       <div class="cta-buttons">
-        <a class="btn btn-primary" href="#program">View Program</a>
+        <a class="btn btn-primary" href="#abstracts">Abstract Submission</a>
         <a class="btn btn-outline" href="#contact">Contact</a>
       </div>
       <div class="hero-cards">
@@ -659,10 +752,6 @@
         <div class="hero-card">
           <strong>Venue</strong>
           <span>SUNUM, Sabancı University</span>
-        </div>
-        <div class="hero-card">
-          <strong>Focus</strong>
-          <span>BioMEMS, Microfluidics, Biosensors</span>
         </div>
       </div>
     </div>
@@ -707,25 +796,27 @@
       </div>
 
       <div class="logo-grid">
-        <div class="logo-item"><img src="sabanci.png" alt="Sabanci University"></div>
-        <div class="logo-item"><img src="sunum_logo.png" alt="SUNUM"></div>
-        <div class="logo-item"><img src="efsun.png" alt="EFSUN"></div>
-        <div class="logo-item"><img src="metumems.png" alt="METU MEMS Center"></div>
+  <div class="logo-item"><img src="sabanci.png" alt="Sabanci University"></div>
+  <div class="logo-item"><img src="sunum_logo.png" alt="SUNUM"></div>
+  <div class="logo-item"><img src="efsun.png" alt="EFSUN"></div>
+  <div class="logo-item"><img src="metumems.png" alt="METU MEMS Center"></div>
 
-        <div class="logo-item offset">
-          <img src="iyte.png" alt="IZTECH" style="transform:scale(0.85);">
-        </div>
+  <div class="logo-item offset">
+    <img src="iyte.png" alt="IZTECH" style="transform:scale(0.85);">
+  </div>
 
-        <div class="logo-item offset">
-          <img src="ege.png" alt="Ege University" style="transform:scale(0.8);">
-        </div>
-        <div class="logo-item offset">
-          
-  <img src="odtu.png" alt="ODTU" style="transform:scale(1.80);">
-  
+  <div class="logo-item offset">
+    <img src="ege.png" alt="Ege University" style="transform:scale(0.8);">
+  </div>
+
+  <div class="logo-item offset">
+    <img src="odtu.png" alt="ODTU" style="transform:scale(1.80);">
+  </div>
+
+  <div class="logo-item offset">
+    <img src="koclogo.png" alt="Koc University" style="transform:scale(0.95);">
+  </div>
 </div>
- 
-      </div>
     </div>
   </section>
 
@@ -748,6 +839,9 @@
         <div class="topic-card"><h3>Wearables and Implantables</h3></div>
         <div class="topic-card"><h3>Energy Harvesting and Self-Powered Sensors</h3></div>
         <div class="topic-card"><h3>Environmental Monitoring</h3></div>
+        <div class="topic-card"><h3>Translational Microtechnologies</h3></div>
+        <div class="topic-card"><h3>Manufacturing and Scalable Fabrication</h3></div>
+        <div class="topic-card"><h3>Standardization, Interoperability and System Integration</h3></div>
       </div>
     </div>
   </section>
@@ -782,14 +876,14 @@
       <h3 style="color:#d90f33; margin: 34px 0 12px;">Vice Chairs</h3>
       <div class="committee-grid">
         <div class="person">
-          <div class="person-photo"><img src="ozlem.jpg" alt="Ozlem Celiktas" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
+          <div class="person-photo"><img src="ozlem.jpg" alt="Ozlem Celiktas"></div>
           <div>
             <h3>Prof. Özlem Yeşil Çeliktaş</h3>
             <p>Ege University</p>
           </div>
         </div>
         <div class="person">
-          <div class="person-photo"><img src="metin.jpeg" alt="Metin Muradoglu" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
+          <div class="person-photo"><img src="metin.jpeg" alt="Metin Muradoglu"></div>
           <div>
             <h3>Prof. Metin Muradoğlu</h3>
             <p>Koç University</p>
@@ -830,13 +924,12 @@
         <p style="color:#5b6573;">• Selected abstracts may be invited for short oral presentations</p>
 
         <div class="cta-buttons" style="margin-top:22px; justify-content:flex-start;">
-          <a class="btn btn-primary" href="#contact">Submit Abstract</a>
-        </div>
+  <a class="btn btn-primary" href="#contact">Submit Abstract</a>
+  <a class="btn btn-outline" href="Abstract_Template.docx" download>Download Template</a>
+</div>
       </div>
     </div>
   </section>
-
-
 
   <section class="cta" id="contact">
     <div class="container">
